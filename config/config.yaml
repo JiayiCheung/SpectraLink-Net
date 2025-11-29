@@ -1,0 +1,63 @@
+# ============================================
+# SpectraLink-Net 配置文件
+# ============================================
+
+# 数据配置
+data:
+  # 预处理后的数据路径
+  data_dir: '/home/bingxing2/home/scx7as9/run/CSUqx/SLinkNet/data/preprocess/processed/data'
+  props_dir: '/home/bingxing2/home/scx7as9/run/CSUqx/SLinkNet/data/preprocess/processed/properties'
+  split_file: '/home/bingxing2/home/scx7as9/run/CSUqx/SLinkNet/data/preprocess/splits.json'
+
+  # Patch采样配置
+  patch_size: [64, 128, 128]
+  samples_per_volume: 4
+  oversample_foreground: 0.7
+
+  # DataLoader配置
+  batch_size: 2
+  num_workers: 4
+
+# 模型配置
+model:
+  in_channels: 1
+  out_channels: 1
+  base_channels: 32
+  num_levels: 3
+  freq_token_base: 4
+  expansion_ratio: 2
+  dropout: 0.0
+
+# 训练配置
+training:
+  num_epochs: 500
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  min_lr: 0.000001
+  scheduler: 'cosine'
+
+  # 验证和保存频率
+  validate_every: 3
+  save_every: 20
+
+# 损失函数配置
+loss:
+  w_dice: 0.5
+  w_bce: 0.5
+  w_cldice: 0.0
+  pos_weight: 6.0
+
+# 数据增强配置
+augmentation:
+  enable: true
+  flip_prob: 0.5
+  rotate_prob: 0.3
+  rotate_angle: 15
+  intensity_shift: 0.1
+  intensity_scale: 0.1
+  noise_std: 0.02
+
+# 日志和输出配置
+logging:
+  log_dir: '/home/bingxing2/home/scx7as9/run/CSUqx/SLinkNet/outputs/logs'
+  checkpoint_dir: '/home/bingxing2/home/scx7as9/run/CSUqx/SLinkNet/outputs/checkpoints'
