@@ -91,6 +91,10 @@ class VesselDataset(Dataset):
 		image = data[0:1]  # [1, D, H, W]
 		label = data[1:2]  # [1, D, H, W]
 		
+		# ✅ 修复：二值化标签，只保留血管(值=1)，肿瘤(值=2)变为背景
+		# Task08_HepaticVessel: 1=血管, 2=肿瘤
+		label = (label == 1).astype(np.float32)
+		
 		return image, label
 	
 	def _get_random_center(self, shape: Tuple[int, ...]) -> List[int]:
@@ -268,6 +272,10 @@ class VesselDatasetFullVolume(Dataset):
 		
 		image = data[0:1]  # [1, D, H, W]
 		label = data[1:2]  # [1, D, H, W]
+		
+		# ✅ 修复：二值化标签，只保留血管(值=1)，肿瘤(值=2)变为背景
+		# Task08_HepaticVessel: 1=血管, 2=肿瘤
+		label = (label == 1).astype(np.float32)
 		
 		# 转换为tensor
 		img_tensor = torch.from_numpy(image.copy()).float()
