@@ -3,7 +3,7 @@
 SpectraLink-Net 模型包
 
 主要组件：
-- SpectraLinkNet: 主模型
+- SpectraLinkNet: 主模型（支持梯度检查点）
 - Encoder: 编码器（双分支 + 融合）
 - Decoder: 解码器
 - SegmentationHead: 分割头

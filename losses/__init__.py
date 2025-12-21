@@ -10,6 +10,7 @@
 - FocalLoss: Focal损失
 - CombinedLoss: 组合损失
 - DiceBCELoss: Dice + BCE损失
+- DeepSupervisionLoss: 深度监督损失
 """
 
 from .dice_loss import DiceLoss, SoftDiceLoss, GeneralizedDiceLoss
@@ -20,6 +21,11 @@ from .combined_loss import (
     CombinedLoss,
     DiceBCELoss,
     build_loss
+)
+from .deep_supervision import (
+    DeepSupervisionLoss,
+    DeepSupervisionWrapper,
+    build_deep_supervision_loss
 )
 
 __all__ = [
@@ -37,6 +43,10 @@ __all__ = [
     # 组合损失
     'CombinedLoss',
     'DiceBCELoss',
+    # 深度监督
+    'DeepSupervisionLoss',
+    'DeepSupervisionWrapper',
+    'build_deep_supervision_loss',
     # 工厂函数
     'build_loss',
 ]
